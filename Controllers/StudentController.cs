@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using crud.Data;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -55,18 +50,29 @@ namespace crud.Controllers
         {
             var student = await _context.Students.FindAsync(id);
             if (student == null) return NotFound();
-            student.Name = updatedStudent.Name;
-            student.Email = updatedStudent.Email;
-            student.Hobby = updatedStudent.Hobby;
+
+            if (!string.IsNullOrEmpty(updatedStudent.Name))
+            {
+                student.Name = updatedStudent.Name;
+            }
+            if (!string.IsNullOrEmpty(updatedStudent.Email))
+            {
+                student.Email = updatedStudent.Email;
+            }
+            if (!string.IsNullOrEmpty(updatedStudent.Hobby))
+            {
+                student.Hobby = updatedStudent.Hobby;
+            }
+
             student.Age = updatedStudent.Age;
 
             await _context.SaveChangesAsync();
 
-            return Ok(updatedStudent);
+            return Ok(student);
         }
 
         //delete
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var student = await _context.Students.FindAsync(id);
