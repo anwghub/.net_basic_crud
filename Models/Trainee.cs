@@ -1,4 +1,4 @@
-public class Student
+public class Trainee
 {
     public int Id { get; set; }
     public string? Name { get; set; }

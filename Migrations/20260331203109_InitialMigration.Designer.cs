@@ -11,8 +11,8 @@ using crud.Data;
 namespace crud.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260331062929_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260331203109_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace crud.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Student", b =>
+            modelBuilder.Entity("Trainee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

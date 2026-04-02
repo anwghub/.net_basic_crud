@@ -17,7 +17,7 @@ namespace crud.Controllers
 
         //create
         [HttpPost]
-        public async Task<IActionResult> Create(Student student)
+        public async Task<IActionResult> Create(Trainee student)
         {
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
@@ -46,7 +46,7 @@ namespace crud.Controllers
 
         //Update
         [HttpPatch("{id}")]
-        public async Task<IActionResult> Update(int id, Student updatedStudent)
+        public async Task<IActionResult> Update(int id, Trainee updatedStudent)
         {
             var student = await _context.Students.FindAsync(id);
             if (student == null) return NotFound();
